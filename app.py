@@ -65,23 +65,6 @@ def makeWebhookResult(req):
             "source": "apiai-onlinestore-shipping"
         }
     if req.get("result").get("action") == "user.id3":
-        db = MySQLdb.connect("localhost","user","","python" )
-        cursor = db.cursor()
-        # Prepare SQL query to INSERT a record into the database.
-        sql = """INSERT INTO text(id,
-                 title,text)
-                 VALUES ('3', 'hello', 'Magdg')"""
-        try:
-           # Execute the SQL command
-           cursor.execute(sql)
-           # Commit your changes in the database
-           db.commit()
-        except:
-           # Rollback in case there is any error
-           db.rollback()
-
-        # disconnect from server
-        db.close()
         speech = "Hello"
         print("Response:")
         print(speech)
