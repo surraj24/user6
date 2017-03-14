@@ -3,6 +3,7 @@
 import urllib
 import json
 import os
+import MySQLdb
 
 from flask import Flask
 from flask import request
@@ -63,6 +64,21 @@ def makeWebhookResult(req):
             # "contextOut": [],
             "source": "apiai-onlinestore-shipping"
         }
+    if req.get("result").get("action") == "user.id3":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        id1 = parameters.get("user-id")
+        cost = {'Suraj':'192.168.1.1', 'Shubham':'192.168.2.1', 'Raju':'192.168.3.1', 'Yash':'192.168.4.1', 'Ravi':'192.168.5.1'}
+        speech = id1 + " .IP address of your router is -" + cost[id1]
+        print("Response:")
+        print(speech)
+        return {
+            "speech": speech,
+            "displayText": speech,
+            #"data": {},
+            # "contextOut": [],
+            "source": "apiai-onlinestore-shipping"
+        }   
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
