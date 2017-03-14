@@ -28,30 +28,37 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "user.id":
-        return {}
-    result = req.get("result")
-    parameters = result.get("parameters")
-    id1 = parameters.get("user-id")
-    pass1 = parameters.get("password")
-    cost = {'Suraj':100, 'Shubham':200, 'Raju':300, 'Yash':400, 'Ravi':500}
-    if(str(cost[id1])==pass1):
-        speech = id1 + ". You are Suceesfully login. How can I help you."
-    else:
-        speech = "Incorrect password."
-    
-    print("Response:")
-    print(speech)
+    if req.get("result").get("action") == "user.id":
+        result = req.get("result")
+        parameters = result.get("parameters")
+        id1 = parameters.get("user-id")
+        pass1 = parameters.get("password")
+        cost = {'Suraj':100, 'Shubham':200, 'Raju':300, 'Yash':400, 'Ravi':500}
+        if(str(cost[id1])==pass1):
+            speech = id1 + ". You are Suceesfully login. How can I help you."
+        else:
+            speech = "Incorrect password."
+        print("Response:")
+        print(speech)
 
-    return {
-        "speech": speech,
-        "displayText": speech,
-        #"data": {},
-        # "contextOut": [],
-        "source": "apiai-onlinestore-shipping"
-    }
-
-
+        return {
+            "speech": speech,
+            "displayText": speech,
+            #"data": {},
+            # "contextOut": [],
+            "source": "apiai-onlinestore-shipping"
+        }
+    if req.get("result").get("action") == "user.id2":
+        speech = "Right."
+        print("Response:")
+        print(speech)
+        return {
+            "speech": speech,
+            "displayText": speech,
+            #"data": {},
+            # "contextOut": [],
+            "source": "apiai-onlinestore-shipping"
+        }
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
