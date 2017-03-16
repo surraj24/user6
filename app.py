@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import mysql.connector
 import urllib
 import json
 import os
